@@ -1,0 +1,114 @@
+// 
+// SUPER MEGA BORDER HACK™
+// mega outdated, fix this shiznit
+// 
+html {
+  background-color: #eaca80;
+}
+
+body {
+  margin: 15px;
+  background-color: #fff;
+}
+
+.footerborder {
+  background-color: #eaca80;
+  width: 100%;
+  position: fixed;
+  height: 15px;
+  padding: 0;
+  margin: 0;
+  bottom: 0;
+}
+// 
+// END MEGA BORDER HACK
+// 
+
+.topNav {
+  // @include make-row();
+  margin-top: 30px;
+  padding-bottom: 80px;
+
+  .logo {
+    width: 60px;
+  }
+}
+
+.projects {
+  > h1 {
+    // @include make-xs-column(12);
+    margin-bottom: 80px;
+  }
+
+  .work {
+    @include make-row();
+    padding-bottom: 30px;
+
+    img {
+      // @include img-responsive();
+      width: 100%;
+    }
+  }
+}
+
+.footer {
+  border-top: 3px solid #eaca80;
+  padding-top: 30px;
+  padding-bottom: 70px;
+  img {
+    width: 40px;
+  }
+}
+
+
+// a {
+//   color: #eaca80;
+//   font-weight: bold;
+//   &:hover {
+//     color: #000;
+//     text-decoration: none;
+//   }
+// }
+
+// .container {
+//   background-color: #fff;
+// }
+
+
+
+// // .bodytitle {
+// //   font-size: 55px;
+// //   line-height: 1.2em;
+// //   font-weight: bold;
+// //   padding-bottom: 80px;
+// // }
+
+
+
+// .maintitle {
+
+// }
+
+// .work {
+//   @include make-xs-column(12);
+//   padding-bottom: 30px;
+
+//   img {
+//     @include img-responsive;
+//     width: 100%;
+//     border: 1px solid #ccc;
+//   }
+// }
+
+
+// @media (max-width: 991px) {
+//   .headerleft, .headerright {
+//     width: 100%;
+//   }
+// }
+
+// @media (max-width: 800px) {
+//   .maintitle {
+//     font-size: 40px;
+//   }
+// }
