@@ -54,7 +54,10 @@ if config.production
 
 # Task: Clean output dir
 gulp.task 'clean', ->
-  del config.outputDir + '/**/*'
+  del([
+    config.outputDir + '/**/*',
+    '!dist/.git'
+  ])
 
 
 #
