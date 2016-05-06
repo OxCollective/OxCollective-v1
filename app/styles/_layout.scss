@@ -9,15 +9,52 @@
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  border: #eaca80 solid 1rem;
+  border: #eaca80 solid 0.5rem;
+  pointer-events: none;
+
+  @include breakpoint(medium up) {
+  	border: #eaca80 solid 1rem;
+  }
 }
 
 .topNav {
-//	 margin-top: 30px;
-	padding-bottom: 80px;
+	@include flex-grid-row();
+	padding-bottom: 4rem;
 
 	.logo {
-		width: 60px;
+		@include flex-grid-column(12);
+		text-align: center;
+		img {
+			width: 40%;
+		}
+
+		@include breakpoint(medium up) {
+			@include flex-grid-column(2);
+			text-align: left;
+			width: auto;
+
+			img {
+				width: auto;
+			}
+		}
+
+		@include breakpoint(large up) {
+			@include flex-grid-column(1);
+		}
+	}
+
+	.availability {
+		@include flex-grid-column(12);
+		text-align: center;
+
+		@include breakpoint(medium up) {
+			@include flex-grid-column(10);
+			text-align: right;
+		}
+
+		@include breakpoint(large up) {
+			@include flex-grid-column(11);
+		}
 	}
 }
 
