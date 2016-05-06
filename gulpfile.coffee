@@ -57,6 +57,7 @@ gulp.task 'clean', ->
   del([
     config.outputDir + '/**/*',
     '!dist/.git'
+    '!dist/CNAME'
   ])
 
 
