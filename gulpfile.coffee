@@ -22,13 +22,17 @@ merge = require('merge-stream') 				# merge() command for tasks with multiple so
 cmq = require('gulp-group-css-media-queries') 	# Combines media queries
 autoprefixer = require('gulp-autoprefixer')     # Autoprefixes CSS for compatibility
 cleanCss = require('gulp-clean-css')    # minify CSS
+htmlReplace =  require('gulp-html-replace')   # Replaces stuff on HTML
 
 #
 # C O N F I G
 # ===========
 config =
-  # environment variables (for production)
-  production: gutil.env.production
+  # environment variables
+  # 
+  # production should be called like this:
+  # $ gulp --type production
+  type: gutil.env.type
 
   # default paths
   sourceDir: 'app'
@@ -43,7 +47,7 @@ config =
   }
 
 # set output dir to 'dist' for production
-if config.production
+if config.type
   config.outputDir = 'dist'
 
 #
@@ -65,6 +69,20 @@ gulp.task 'clean', ->
 # Task: HTML
 #
 gulp.task 'html', ->
+  # sets base directory according to state
+  config.htmlReplaceSrc = 'http://localhost:9000'
+  config.htmlReplaceTpl = '<base src="%s">'
+
+  if config.type
+    config.htmlReplaceSrc = 'http://oxcollective.com'
+
+  config.htmlReplace = {
+    base: {
+      src: config.htmlReplaceSrc,
+      tpl: config.htmlReplaceTpl
+      }
+  }
+
   gulp.src(config.sourceDir + '/**/*.pug')
 
   # Stop gulp from crashing on errors
@@ -80,6 +98,8 @@ gulp.task 'html', ->
     basedir: config.sourceDir
     pretty: true))
 
+  .pipe(htmlReplace(config.htmlReplace))
+
   .pipe(gulp.dest(config.outputDir))
 
   # Send out notification when done
@@ -93,7 +113,7 @@ gulp.task 'styles', ->
   opStyle = 'map'
 
   # Compress stylesheets for production
-  if config.production
+  if config.type
     outputStyle = 'compressed'
 
   gulp.src(config.sourceDir + '/styles/**/*.{scss,sass}')
@@ -120,15 +140,15 @@ gulp.task 'styles', ->
   .pipe(cmq())
 
   # Autoprefixer for browser support (production)
-  .pipe(gulpIf(config.production, autoprefixer()))
+  .pipe(gulpIf(config.type, autoprefixer()))
 
   # Minify
-  .pipe(gulpIf(config.production, cleanCss({
+  .pipe(gulpIf(config.type, cleanCss({
     browsers: ['last 2 versions', 'ie >= 9', 'and_chr >= 2.3']
   })))
 
   # Sourcemaps for CSS (step 2)
-  .pipe(gulpIf(!config.production, sourcemaps.write()))
+  .pipe(gulpIf(!config.type, sourcemaps.write()))
 
   .pipe(gulp.dest(config.outputDir + '/styles'))
 
@@ -169,7 +189,7 @@ gulp.task 'scripts', ->
   .pipe(plumber(config.plumber))
 
   # Uglify scripts (production)
-  .pipe(gulpIf(config.production, uglify()))
+  .pipe(gulpIf(config.type, uglify()))
   .pipe(gulp.dest(config.outputDir + '/scripts'))
   
 
@@ -199,7 +219,7 @@ gulp.task 'images', ->
   .pipe(changed(config.outputDir))
 
   # Minify images (on production) 
-  .pipe(gulpIf(config.production, imagemin()))
+  .pipe(gulpIf(config.type, imagemin()))
 
   .pipe(gulp.dest(config.outputDir))
 
