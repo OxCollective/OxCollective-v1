@@ -70,11 +70,11 @@ gulp.task 'clean', ->
 #
 gulp.task 'html', ->
   # sets base directory according to state
-  config.htmlReplaceSrc = 'http://localhost:9000'
-  config.htmlReplaceTpl = '<base src="%s">'
+  config.htmlReplaceSrc = 'http://localhost:9000/tml'
+  config.htmlReplaceTpl = '<base href="%s">'
 
   if config.type
-    config.htmlReplaceSrc = 'http://oxcollective.com'
+    config.htmlReplaceSrc = 'http://oxcollective.com/'
 
   config.htmlReplace = {
     base: {
