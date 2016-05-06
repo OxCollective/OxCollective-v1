@@ -1,114 +1,61 @@
 // 
 // SUPER MEGA BORDER HACK™
-// mega outdated, fix this shiznit
-// 
-html {
-  background-color: #eaca80;
-}
-
-body {
-  margin: 15px;
-  background-color: #fff;
-}
-
-.footerborder {
-  background-color: #eaca80;
-  width: 100%;
+//
+.goldenFrame {
   position: fixed;
-  height: 15px;
-  padding: 0;
-  margin: 0;
-  bottom: 0;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: #eaca80 solid 1rem;
 }
-// 
-// END MEGA BORDER HACK
-// 
 
 .topNav {
-  // @include make-row();
-  margin-top: 30px;
-  padding-bottom: 80px;
+//	 margin-top: 30px;
+	padding-bottom: 80px;
 
-  .logo {
-    width: 60px;
-  }
+	.logo {
+		width: 60px;
+	}
 }
 
 .projects {
-  > h1 {
-    // @include make-xs-column(12);
-    margin-bottom: 80px;
-  }
+	> header {
+		@include flex-grid-row();
+		margin-bottom: 6rem;
+	}
 
-  .work {
-    @include make-row();
-    padding-bottom: 30px;
-
-    img {
-      // @include img-responsive();
-      width: 100%;
-    }
-  }
-}
+	.work {
+		@include flex-grid-row();
+		padding-bottom: 2rem;
+	}
+}	
 
 .footer {
-  border-top: 3px solid #eaca80;
-  padding-top: 30px;
-  padding-bottom: 70px;
-  img {
-    width: 40px;
-  }
+	// Foundation class for equal columns
+	@include flex-grid-row();
+	@include flex-grid-layout(1);
+	border-top: 3px solid #eaca80;
+	padding-top: 30px;
+	padding-bottom: 70px;
+
+	@include breakpoint(small only) {
+		text-align: center;
+	}
+
+	@include breakpoint(medium up) {
+		@include flex-grid-layout(4);
+	}
+
+	.column {
+		@include breakpoint(small only) {
+			margin: 1rem 0;
+		}
+	}
+
+	.logo {
+		width: 3rem;
+	}
 }
-
-
-// a {
-//   color: #eaca80;
-//   font-weight: bold;
-//   &:hover {
-//     color: #000;
-//     text-decoration: none;
-//   }
-// }
-
-// .container {
-//   background-color: #fff;
-// }
-
-
-
-// // .bodytitle {
-// //   font-size: 55px;
-// //   line-height: 1.2em;
-// //   font-weight: bold;
-// //   padding-bottom: 80px;
-// // }
-
-
-
-// .maintitle {
-
-// }
-
-// .work {
-//   @include make-xs-column(12);
-//   padding-bottom: 30px;
-
-//   img {
-//     @include img-responsive;
-//     width: 100%;
-//     border: 1px solid #ccc;
-//   }
-// }
-
-
-// @media (max-width: 991px) {
-//   .headerleft, .headerright {
-//     width: 100%;
-//   }
-// }
-
-// @media (max-width: 800px) {
-//   .maintitle {
-//     font-size: 40px;
-//   }
-// }

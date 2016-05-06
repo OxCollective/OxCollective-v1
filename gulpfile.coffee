@@ -107,7 +107,7 @@ gulp.task 'styles', ->
 
     # Include paths to components (add/remove manually)
     includePaths: [
-      'bower_components/bootstrap-sass/assets/stylesheets'
+      'bower_components/foundation-sites/scss'
       'bower_components/sass-mq'
       'bower_components/monosocialiconsfont'
     ]
@@ -123,7 +123,7 @@ gulp.task 'styles', ->
 
   # Minify
   .pipe(gulpIf(config.production, cleanCss({
-    compatibility: 'ie8'
+    browsers: ['last 2 versions', 'ie >= 9', 'and_chr >= 2.3']
   })))
 
   # Sourcemaps for CSS (step 2)
@@ -177,8 +177,7 @@ gulp.task 'scripts', ->
   # Copy vendor files to output dir
   vendor = gulp.src([
     'bower_components/jquery/dist/jquery.min.*'
-    'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.*'
-    # 'bower_components/jquery-smooth-scroll/**/*.js'
+    
   ])
 
   .pipe(gulp.dest(config.outputDir + '/scripts/vendor'))
