@@ -988,7 +988,16 @@ a {
   margin-right: auto;
   display: flex;
   flex-flow: row wrap;
+}
+
+.projects .work img {
   padding-bottom: 2rem;
+  opacity: 0;
+  transition: opacity .3s ease-in;
+}
+
+.projects .work noscript img {
+  opacity: 1;
 }
 
 .footer {
